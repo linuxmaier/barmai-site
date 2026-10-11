@@ -1,0 +1,3 @@
+# Crawlers may fetch pages so they see the noindex header and tag, which keep the site out of search results.
+User-agent: *
+Allow: /

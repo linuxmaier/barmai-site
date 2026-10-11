@@ -1,0 +1,132 @@
+@import '@fontsource-variable/cormorant-garamond';
+@import '@fontsource-variable/inter';
+
+:root {
+  /* Navy and sky blue, after our Joy wedding site (withjoy.com/barton-maier), on the ivory of the tablecloths. */
+  --bg: #f8f4e8;
+  --surface: #fffdf6;
+  --ink: #0b2139;
+  --muted: #4d5d73;
+  --accent: #1f4f8a;
+  --accent-ink: #fffdf6;
+  --line: #e4dccb;
+  --cover: #0b2139;
+  --shadow: 0 1px 2px rgb(11 33 57 / 0.06), 0 4px 16px rgb(11 33 57 / 0.06);
+  --serif: 'Cormorant Garamond Variable', Georgia, serif;
+  --sans: 'Inter Variable', system-ui, sans-serif;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Joy's navy, silver text, and sky-blue accent. */
+    --bg: #0b2139;
+    --surface: #11294a;
+    --ink: #e3e7ea;
+    --muted: #a9b4c2;
+    --accent: #c1e6ff;
+    --accent-ink: #0b2139;
+    --line: #22406a;
+    --cover: #1b3b66;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.3);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 1.0625rem/1.65 var(--sans);
+}
+
+main {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 3rem 1rem 4rem;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 2rem 0 0.75rem;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 9vw, 3.5rem);
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+h3 {
+  font-size: 1.35rem;
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 0.15em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose li + li {
+  margin-top: 0.35rem;
+}
+
+.prose table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.prose th,
+.prose td {
+  border-bottom: 1px solid var(--line);
+  padding: 0.4rem 0.5rem 0.4rem 0;
+  text-align: left;
+}
+
+.prose blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--accent);
+  color: var(--muted);
+}
+
+.prose hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 2rem 0;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.back:hover {
+  text-decoration: underline;
+}

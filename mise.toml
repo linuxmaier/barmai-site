@@ -1,0 +1,8 @@
+[tools]
+node = "24"
+actionlint = "1"
+shellcheck = "0"
+
+[tasks.check]
+description = "Everything CI checks: build the site and lint the workflow"
+run = ["npm run build", "actionlint"]

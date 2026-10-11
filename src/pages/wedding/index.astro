@@ -1,0 +1,167 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+
+const landing = await getEntry('wedding', 'index');
+if (!landing) throw new Error('content/wedding/index.md is missing');
+const { Content } = await render(landing);
+
+const buttons = (await getCollection('wedding', (e) => e.id !== 'index' && !e.data.draft)).sort(
+  (a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title),
+);
+---
+
+<Base title={landing.data.title} description={landing.data.subtitle}>
+  <header>
+    {
+      landing.data.photo && (
+        <Image
+          class="photo"
+          src={landing.data.photo}
+          alt={landing.data.photo_alt ?? ''}
+          widths={[320, 640, 960]}
+          sizes="(max-width: 36rem) 100vw, 34rem"
+          loading="eager"
+        />
+      )
+    }
+    <h1>{landing.data.title}</h1>
+    {landing.data.subtitle && <p class="subtitle">{landing.data.subtitle}</p>}
+  </header>
+
+  <div class="prose intro"><Content /></div>
+
+  <nav aria-label="Wedding information">
+    <ul class="buttons">
+      {
+        buttons.map((b) => {
+          const external = Boolean(b.data.link);
+          return (
+            <li>
+              <a
+                class="button"
+                href={b.data.link ?? `/wedding/${b.id}/`}
+                {...(external ? { target: '_blank', rel: 'noopener' } : {})}
+              >
+                <span class="label">
+                  <span class="title">{b.data.title}</span>
+                  {b.data.description && <span class="desc">{b.data.description}</span>}
+                </span>
+                <span class="arrow" aria-hidden="true">
+                  {external ? '↗' : '→'}
+                </span>
+                {external && <span class="sr-only">(opens another site)</span>}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </nav>
+</Base>
+
+<style>
+  header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .subtitle {
+    margin: 0.25rem 0 0;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+  }
+
+  .intro {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .buttons {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .button {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    min-height: 3.5rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 0.875rem;
+    box-shadow: var(--shadow);
+    color: var(--ink);
+    text-decoration: none;
+    transition:
+      border-color 0.15s,
+      transform 0.15s;
+  }
+
+  .button:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .label {
+    flex: 1;
+    display: grid;
+  }
+
+  .title {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .desc {
+    color: var(--muted);
+    font-size: 0.925rem;
+    line-height: 1.4;
+  }
+
+  .arrow {
+    color: var(--accent);
+    font-size: 1.25rem;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .button {
+      transition: none;
+    }
+    .button:hover {
+      transform: none;
+    }
+  }
+</style>
