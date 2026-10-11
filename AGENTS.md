@@ -34,7 +34,7 @@ It runs on the household platform, [linuxmaier/home-server](https://github.com/l
 - mise pins the toolchain (`mise.toml`). Run `mise install`, then `npm ci`.
 - `npm run dev` serves the site at http://localhost:4321 with live reload.
 - `mise run check` runs what CI checks: the build (which also validates the content against the schema) and `actionlint`.
-- To test the production image: `docker build -t barmai-site:dev . && docker run --rm -p 8080:8080 --read-only --tmpfs /tmp barmai-site:dev`.
+- To test the production image: `docker build -t barmai-site:dev . && docker run --rm -p 8080:8080 --read-only --tmpfs /tmp --cap-drop ALL --security-opt no-new-privileges:true barmai-site:dev`.
 - Pin base images by digest in the `Dockerfile`, and actions by commit SHA.
 - Styles use the CSS custom properties in `src/styles/global.css`, which has light and dark values. Fonts are self-hosted through Fontsource, so pages make no third-party requests.
 - The site must work at phone width. Most guests will open it from a QR code or a text message.
