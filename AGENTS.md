@@ -4,6 +4,16 @@ The household's public website at [barmai.us](https://barmai.us/). Right now it'
 
 `CLAUDE.md` is a symlink to this file. Edit `AGENTS.md`, never the symlink.
 
+## Everything here is public
+
+The site has no login, and this repository is public on GitHub, including its full history. Deleting a file later doesn't remove it from the history, so review content before it's committed, not after.
+
+- Before committing a change to `content/` or `public/`, read it for anything that shouldn't be public: home addresses, phone numbers, email addresses, children's full names or schools, guest lists and seating, dates when the house will be empty, health details, and anything about other people that they haven't agreed to share.
+- If something looks sensitive, point it out to the owner and ask. Don't silently rewrite or remove it, since it may be there on purpose.
+- Photos can carry the GPS location where they were taken. Strip metadata from any image before committing it (for example, re-encode it with sharp, which drops metadata by default).
+- `noindex` keeps pages out of search results. It isn't access control: anyone with a link can read every page.
+- Never commit secrets or credentials. There's no reason for any to be in this repo.
+
 ## How it works
 
 - [Astro](https://astro.build) builds a static site. Content is Markdown in `content/`, not `src/`, so non-developers can find it. The schema is in `src/content.config.ts`. [`EDITING.md`](EDITING.md) explains the content format for people editing in GitHub's web editor. Keep it in sync with the schema.

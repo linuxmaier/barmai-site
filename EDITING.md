@@ -135,4 +135,6 @@ Each line you type stays its own line on the site, so poems and vows keep their 
 
 If a change breaks the site (for example, a typo in the block at the top), the site keeps showing the last version that worked, and GitHub emails you that the **Release** run failed. Its log usually names the file and the problem. To undo a change, open the file's **History**, or ask Andrew.
 
-Everything here is public. Anyone with the link can read it, so leave out home addresses and anything else you wouldn't post publicly.
+Everything here is public. Anyone with the link can read it, so leave out home addresses and anything else you wouldn't post publicly. The files are public on GitHub too, along with every earlier version, so deleting something later doesn't fully remove it.
+
+Photos taken on a phone can include the location where they were taken. Ask Andrew to add photos for you, so that information gets removed first.
