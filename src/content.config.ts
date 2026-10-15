@@ -36,6 +36,9 @@ const entries = defineCollection({
       label: z.string().optional(),
       order: z.number().default(100),
       draft: z.boolean().default(false),
+      // Listed by title and byline under "Honorable mentions" at the bottom of the page,
+      // with no tile, section, or page of its own.
+      mention: z.boolean().default(false),
       image: image().optional(),
       image_alt: z.string().optional(),
     }),

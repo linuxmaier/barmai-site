@@ -27,6 +27,7 @@ const items = await Promise.all(
     Body: tiles ? null : (await render(e)).Content,
   })),
 );
+const mentions = (await entriesFor(entry.id, { mentions: true })).map(({ entry: e }) => e.data);
 ---
 
 <Base title={entry.data.title} description={entry.data.description}>
@@ -88,6 +89,22 @@ const items = await Promise.all(
         <div class="prose">{Body && <Body />}</div>
       </section>
     ))
+  }
+
+  {
+    mentions.length > 0 && (
+      <section class="mentions">
+        <h2>Honorable mentions</h2>
+        <ul>
+          {mentions.map((m) => (
+            <li>
+              <cite>{m.title}</cite>
+              {m.byline && <span class="mention-byline"> by {m.byline}</span>}
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
   }
 </Base>
 
@@ -184,6 +201,36 @@ const items = await Promise.all(
     margin: 0 0 1rem;
     color: var(--muted);
     font-style: italic;
+  }
+
+  .mentions {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .mentions h2 {
+    margin-top: 0;
+  }
+
+  .mentions ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .mentions li {
+    font-family: var(--serif);
+  }
+
+  .mentions cite {
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  .mention-byline {
+    color: var(--muted);
   }
 
   .entry-image {

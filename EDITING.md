@@ -63,6 +63,21 @@ order: 5
 
 `byline:` is the author, `label:` is the small line above the title, and `order:` sets its place in the grid.
 
+### Honorable mentions
+
+Below the grid, the books page lists a few more books as a bulleted list under **Honorable mentions**, with just the title and author: no cover, note, or page of their own. Each is a file in the same [`books`](content/wedding/books/) folder with `mention: true` in its block:
+
+```markdown
+---
+title: Where the Sidewalk Ends
+byline: Shel Silverstein
+mention: true
+order: 5
+---
+```
+
+`order:` sets its place in the list. Anything written below the block isn't shown.
+
 ## Add a reading
 
 Each reading is one file in the [`readings`](content/wedding/readings/) folder, shown one after another on the readings page:
