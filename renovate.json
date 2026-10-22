@@ -1,0 +1,68 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Keeps the Dockerfile's base images and the workflow's Actions current. Every push to main publishes and deploys (AGENTS.md, Release), so base-image fixes reach the site without anyone pushing content.",
+  "extends": [
+    "config:recommended",
+    "helpers:pinGitHubActionDigests",
+    "docker:pinDigests"
+  ],
+  "timezone": "America/Chicago",
+  "dependencyDashboard": true,
+  "enabledManagers": [
+    "dockerfile",
+    "github-actions"
+  ],
+  "packageRules": [
+    {
+      "description": "Base-image digest and patch updates merge automatically overnight once the image builds, ahead of home-server's 4am patch window. The window is wider than Mend's 4-hourly runs, so at least one run lands in it",
+      "matchManagers": [
+        "dockerfile"
+      ],
+      "matchUpdateTypes": [
+        "digest",
+        "patch",
+        "pinDigest"
+      ],
+      "automerge": true,
+      "schedule": [
+        "after 10pm",
+        "before 3am"
+      ]
+    },
+    {
+      "description": "Base-image minor and major updates (such as a new Node major, which should move together with mise.toml) wait for review",
+      "matchManagers": [
+        "dockerfile"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "major"
+      ],
+      "schedule": [
+        "before 9am on monday"
+      ]
+    },
+    {
+      "description": "Actions: weekly, grouped; patch and digest updates merge automatically once the image builds",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "groupName": "github actions",
+      "schedule": [
+        "before 9am on monday"
+      ]
+    },
+    {
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchUpdateTypes": [
+        "digest",
+        "patch",
+        "pinDigest"
+      ],
+      "groupName": "github actions patches",
+      "automerge": true
+    }
+  ]
+}
