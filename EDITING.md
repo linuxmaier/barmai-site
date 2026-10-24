@@ -97,7 +97,9 @@ Each reading is one file in the [`readings`](content/wedding/readings/) folder, 
    Admit impediments.
    ```
 
-The example reading is a placeholder, so delete it once you've added real ones. To delete a file, open it, click the **⋯** menu at the top right, and choose **Delete file**.
+To delete a reading, open its file, click the **⋯** menu at the top right, and choose **Delete file**.
+
+Hanna's and Andrew's words before the vows are in `vows-hanna.md` and `vows-andrew.md`, hidden with `draft: true`. To show one, replace its placeholder text and delete the `draft: true` line.
 
 ## Add a button that goes to another site
 

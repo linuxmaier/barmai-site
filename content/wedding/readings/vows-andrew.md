@@ -1,6 +1,7 @@
 ---
-title: Andrew's vows
+title: Andrew's words
 order: 11
+draft: true
 ---
 
-[Andrew's vows.]
+[Andrew's words before the vows.]
