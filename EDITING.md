@@ -138,6 +138,7 @@ The text uses Markdown:
 | `**bold**` | **bold** |
 | `*italic*` | *italic* |
 | `## Heading` | A section heading |
+| `#### label` | A small label over the next paragraph, quieter than a heading |
 | `- item` | A bulleted list |
 | `[words](https://example.com)` | A link |
 

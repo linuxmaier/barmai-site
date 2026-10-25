@@ -1,7 +1,6 @@
 ---
 title: Andrew's words
 order: 11
-draft: true
 ---
 
 We fell in love fast. I remember it was really only a few months in before we started discussing what we needed to figure out before we moved in together, like we were talking about clearing away clutter so we could finally set our bags down. So it was an odd experience for me that it took us quite a while, and quite a lot of conversations, to figure out if, or really ‘why,’ we wanted to get married.

@@ -87,6 +87,15 @@ img {
   height: auto;
 }
 
+/* `####` in Markdown: a quiet label over the paragraph it introduces, not a section break. */
+.prose h4 {
+  margin: 1.75rem 0 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
 .prose > :first-child {
   margin-top: 0;
 }
